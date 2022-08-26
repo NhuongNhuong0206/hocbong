@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+:root {
+    --primary-color: #1877f2;
+    --bg-color: #f0f2f5;
+    --text-color: #1c1e21;
+    --white-color: #fff;
+    --border-color: #dddfe2;
+    --placeholder-color: #9e949c;
+    --green-color: #42b72a;
+    --gray-color: #75777b;
+    --header-height: 56px;
+    --hover-item: rgb(224, 223, 223);
+    --rgba-black: rgba(0, 0, 0, 0.1);
+    --active-min: #eaf3ff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -28,10 +43,34 @@ img {
     margin: 0 auto;
 }
 
+.btn {
+    color: var(--white-color);
+    border-radius: 6px;
+    border: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+    -webkit-filter: brightness(96%);
+    filter: brightness(96%);
+}
+
+.btn-disable {
+    cursor: no-drop;
+    background-color: #e4e6eb;
+    color: #bcc0c4;
+}
+
+.btn-active {
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
 .header {
     height: 96px;
     background-color: #4f8fbf;
-    width: 100vw;
+    width: 100%;
     position: relative;
 }
 

@@ -1,6 +1,4 @@
 function finishLoad() {
-    // const nutDongGop = document.querySelector(".main-mid__item.img1");
-    // const nutCacLoaiHocBong = document.querySelector(".main-mid__item.img2")
     const overplay = document.querySelector(".overplay");
     const closeBtns = document.querySelectorAll(".out");
     const shows = document.querySelectorAll(".main-mid__item");
@@ -11,9 +9,9 @@ function finishLoad() {
     const loginBtnLabel = document.querySelector(
         ".main-top__right-longin_input"
     );
-    const username = document.querySelector("input.username");
-    const password = document.querySelector("input.password");
-    const loginBtn = document.querySelector(".login-btn");
+    const username = document.querySelector("input.form-login__id");
+    const password = document.querySelector("input.form-login__pw");
+    const loginBtn = document.querySelector(".form-login__btn.btn");
     const goToTop = document.querySelector(".go-to__top");
     isLogin = false;
 
@@ -31,6 +29,61 @@ function finishLoad() {
             password: "1",
         },
     ];
+
+    const scholarshipList = [
+        {
+            title: "Học bổng doanh nghiệp",
+            img: "../hocbong/img/HBDoanhNghiep.png",
+        },
+        {
+            title: "Học bổng KKHT",
+            img: "../hocbong/img/HBKHuyenKhichHocTap.jpg",
+        },
+        {
+            title: "Học bổng làm theo lời Bác",
+            img: "../hocbong/img/HBLamTheoLoiBac.jpg",
+        },
+        {
+            title: "Học bổng năng lực tiếng Anh",
+            img: "../hocbong/img/HBNangLucTiengAnh.jpeg",
+        },
+        {
+            title: "Học bổng nghiên cứu khoa học",
+            img: "../hocbong/img/HBNghienCuuKhoaHoc.jpg",
+        },
+        {
+            title: "Học bổng tài năng",
+            img: "../hocbong/img/HBTaiNang.jpg",
+        },
+        {
+            title: "Học bổng trao đổi học sinh",
+            img: "../hocbong/img/HBTraoDoiHocSinh.jpg",
+        },
+        {
+            title: "Học bổng tuyển sinh",
+            img: "../hocbong/img/HBTuyenSinh.jpg",
+        },
+        {
+            title: "Học bổng vượt khó",
+            img: "../hocbong/img/HBVuotKho.jpg",
+        },
+    ];
+
+    //render học bổng
+    const htmls = scholarshipList.map((item) => {
+        return `
+            <div class="form2-item">
+              <div class="form2-item__img">
+                <img src="${item.img}" alt="">
+              </div>
+              <div class="form2-item__title">
+                ${item.title}
+              </div>
+            </div>
+        `;
+    });
+
+    document.querySelector(".form2-list").innerHTML = htmls.join("");
 
     function closeOverplay() {
         overplay.classList.remove("show");
@@ -71,16 +124,16 @@ function finishLoad() {
             overplay.classList.add("show");
             // show1.classList.add("show");
             if (i == 0) {
-                document.body.style.overflow = "hidden";
                 show1.classList.add("show");
                 show2.classList.remove("show");
                 show3.classList.remove("show");
+                document.body.style.overflow = "hidden";
             }
             if (i == 1) {
-                document.body.style.overflow = "hidden";
                 show2.classList.add("show");
                 show1.classList.remove("show");
                 show3.classList.remove("show");
+                document.body.style.overflow = "hidden";
             }
         };
     }
@@ -91,30 +144,31 @@ function finishLoad() {
 
     gui.onclick = closeOverplay;
 
-    //đăng nhập
-    // loginBtn.onclick = function () {
-    //     const usernameVal = username.value;
-    //     const passwordVal = password.value;
+    //login
+    loginBtn.onclick = function (e) {
+        e.preventDefault();
+        const usernameVal = username.value;
+        const passwordVal = password.value;
 
-    //     if (usernameVal && passwordVal) {
-    //         const user = userList.find((item) => item.username == usernameVal);
+        if (usernameVal && passwordVal) {
+            const user = userList.find((item) => item.username == usernameVal);
 
-    //         if (user) {
-    //             if (user.password == passwordVal) {
-    //                 isLogin = true;
-    //                 username.value = null;
-    //                 password.value = null;
-    //                 closeOverplay();
-    //                 //template string
-    //                 loginBtnLabel.value = `${user.username} - Đăng xuất`;
-    //             } else {
-    //                 alert("Sai mật khẩu!");
-    //             }
-    //         } else {
-    //             alert("Tài khoản không tồn tại!");
-    //         }
-    //     } else {
-    //         alert("Bạn phải nhập đầy đủ thông tin!");
-    //     }
-    // };
+            if (user) {
+                if (user.password == passwordVal) {
+                    isLogin = true;
+                    username.value = null;
+                    password.value = null;
+                    closeOverplay();
+                    //template string
+                    loginBtnLabel.value = `${user.username} - Đăng xuất`;
+                } else {
+                    alert("Sai mật khẩu!");
+                }
+            } else {
+                alert("Tài khoản không tồn tại!");
+            }
+        } else {
+            alert("Bạn phải nhập đầy đủ thông tin!");
+        }
+    };
 }
