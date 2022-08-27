@@ -76,3 +76,8 @@ h1{
 .subject img:hover{
     transform:scale(1.4);
 }
+img {
+    display: inline-block;
+    animation:flipInX; 
+    animation-duration: 2s;
+  }

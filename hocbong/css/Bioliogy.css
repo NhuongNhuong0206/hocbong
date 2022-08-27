@@ -83,3 +83,9 @@ a.link:hover{
 .page a:hover{
     background-color: black;
 }
+
+img {
+    display: inline-block;
+    animation:flipInX; 
+    animation-duration: 2s;
+  }

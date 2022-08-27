@@ -15,10 +15,6 @@ function finishLoad() {
     const goToTop = document.querySelector(".go-to__top");
     isLogin = false;
 
-    goToTop.onclick = function () {
-        window.scroll(0, 0);
-    };
-
     const userList = [
         {
             username: "admin",
@@ -27,6 +23,18 @@ function finishLoad() {
         {
             username: "1",
             password: "1",
+        },
+        {
+            username: "Vy",
+            password: "Vy",
+        },
+        {
+            username: "Hien Vy",
+            password: "Hien Vy",
+        },
+        {
+            username: "Thao",
+            password: "Thao",
         },
     ];
 
@@ -83,8 +91,10 @@ function finishLoad() {
         `;
     });
 
+    //Nối và gắn vào html
     document.querySelector(".form2-list").innerHTML = htmls.join("");
 
+    //Hàm đóng các form và overplay
     function closeOverplay() {
         overplay.classList.remove("show");
         show1.classList.remove("show");
@@ -93,6 +103,7 @@ function finishLoad() {
         document.body.style.overflow = "auto";
     }
 
+    //Hàm show form đăng nhập
     function showLoginForm() {
         document.body.style.overflow = "hidden";
         overplay.classList.add("show");
@@ -102,6 +113,12 @@ function finishLoad() {
         username.focus();
     }
 
+    //Hàm go to top
+    goToTop.onclick = function () {
+        window.scroll(0, 0);
+    };
+
+    //Hàm ngăn chặn sự kiện mở thẻ a nếu chưa đăng nhập
     shows[2].onclick = function (e) {
         if (!isLogin) {
             //ngăn chặn hành vi mặc định (hành vi mở form thẻ a)
@@ -110,6 +127,7 @@ function finishLoad() {
         }
     };
 
+    //Hàm mở form đăng nhập
     loginBtnLabel.onclick = function () {
         if (!isLogin) {
             showLoginForm();
@@ -119,6 +137,7 @@ function finishLoad() {
         }
     };
 
+    //Hàm mở 2 form: quyên góp học bổng và danh sách các học bổng
     for (let i = 0; i < shows.length - 1; i++) {
         shows[i].onclick = function () {
             overplay.classList.add("show");
@@ -138,18 +157,22 @@ function finishLoad() {
         };
     }
 
+    //Đóng form khi bấm nút close
     for (let i = 0; i < closeBtns.length; i++) {
         closeBtns[i].onclick = closeOverplay;
     }
 
+    //Đóng form khi bấm nút gửi
     gui.onclick = closeOverplay;
 
-    //login
+    //Kiểm tra hành vi và thông tin đăng nhập
     loginBtn.onclick = function (e) {
+        // Ngăn chặn hành vi mở thẻ a
         e.preventDefault();
         const usernameVal = username.value;
         const passwordVal = password.value;
 
+        //Kiểm tra thông tin đăng nhập
         if (usernameVal && passwordVal) {
             const user = userList.find((item) => item.username == usernameVal);
 

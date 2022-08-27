@@ -62,6 +62,80 @@ function finishLoad() {
             time: "1 ngày trước",
             img: "./hocbong/img/NKimg1.jpg",
         },
+        {
+            title: "Hội Thảo chia sẻ tri thức",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
+        {
+            title: "Báo cáo chuyên đề định hướng lập trình viên",
+            attendance: "Đã điểm danh thành công +3",
+            time: "Vừa xong",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
+
+        {
+            title: "Cổ vũ đêm chung kết Got Talent",
+            attendance: "Đã điểm danh thành công +5",
+            time: "Vừa xong",
+            img: "./hocbong/img/NKimg2.jpg",
+        },
+        {
+            title: "Chương trình âm nhạc học đường",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg3.jpg",
+        },
+        {
+            title: "Giải pháp phần mềm",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg4.jpg",
+        },
+        {
+            title: "Hội Thảo chia sẻ tri thức",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
+        {
+            title: "Hội Thảo chia sẻ tri thức",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
+        {
+            title: "Báo cáo chuyên đề định hướng lập trình viên",
+            attendance: "Đã điểm danh thành công +3",
+            time: "Vừa xong",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
+
+        {
+            title: "Cổ vũ đêm chung kết Got Talent",
+            attendance: "Đã điểm danh thành công +5",
+            time: "Vừa xong",
+            img: "./hocbong/img/NKimg2.jpg",
+        },
+        {
+            title: "Chương trình âm nhạc học đường",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg3.jpg",
+        },
+        {
+            title: "Giải pháp phần mềm",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg4.jpg",
+        },
+        {
+            title: "Hội Thảo chia sẻ tri thức",
+            attendance: "Đã điểm danh thành công +5",
+            time: "1 ngày trước",
+            img: "./hocbong/img/NKimg1.jpg",
+        },
     ];
 
     // id.substr(id.length - 1); // => "1"
@@ -129,47 +203,45 @@ function finishLoad() {
     }
 
     render();
+
+    //----GO TO TOP-----------------
     goToTop.onclick = function () {
         window.scroll(0, 0);
     };
+
+    //------------TIM SHARE------------
     gomAc.onclick = function (e) {
-        // const heart = e.target.closest(".ac_like_share-icon.like");
-        // const lu = e.target.closest(".ac_like_share-icon.lu");
-        // const shar = e.target.closest(".ac_like_share-icon.shar");
-        // console.log(shar);
-        // if (heart && ingL) {
-        //     ingL = false;
-        // }
-        //  if (heart && !ingL) {
-        //      ingL = true;
-        //  }
-
-        // console.log(listLS);
-        // if (listLS) {
-        //     // const d = listLS.dataset.d;
-
-        // }
         const icon = e.target.closest(".ac_like_share-icon");
         if (icon) icon.classList.toggle("active");
     };
+
+    //-------------TÍNH TỔNG ĐIỂM HOẠT ĐỘNG ĐƯỢC------------
     for (let i = 0; i < acList.length; i++) {
+        //-----subtring là hàm cắt chuỗi con từ chuỗi cha -----------
         const diem = acList[i].attendance.substring(
             acList[i].attendance.length - 1
         );
         sum += +diem;
     }
 
+    //----------TỔNG ĐIỂM LÊN FORM-------------
     diem.innerText = sum;
+
+    //----------HIỆN FORM ĐIỂM -----------
     seehdScores.onclick = function () {
         overplay.classList.add("show");
         form1.classList.add("show");
     };
 
+
+    //------TẮT KHI NHẮN NÚT CLOSE
     out.onclick = function () {
         overplay.classList.remove("show");
         form1.classList.remove("show");
     };
 
+
+//----------HIỆN DÒNG NHẮC NHỠ------------
     if (parseInt(diem.innerText) > 80 && parseInt(diem.innerText) < 100) {
         thank.innerHTML = "Bạn đã làm rất tốt rồi đấy :))))";
     } else if (

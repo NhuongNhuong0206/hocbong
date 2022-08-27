@@ -103,6 +103,9 @@ const dataList = [
     },
 ];
 
+
+
+const embark = document.querySelector(".embark");
 const show = document.querySelector(".story-add");
 const inputs = document.querySelectorAll(".item-content > textarea");
 const listStory = document.querySelector(".list-story");
@@ -113,18 +116,22 @@ const form1 = document.querySelector(".form1");
 const form2 = document.querySelector(".form2");
 const elements = document.querySelectorAll(".form");
 const closeBtns = document.querySelectorAll(".out");
-const informations = document.querySelectorAll(
-    ".information-content__item-drum"
-);
 const goToTop = document.querySelector(".go-to__top");
-// function renderF() {
-//     htmlListF = formList.map((data, index) => { return
 
-//     });
-// }
 
-// map là thuộc tính của mảng: từ mảng có sẳn lấy dữ liệu từ mảng đó
+
+//--------------GO TO TOP------------------
+
+goToTop.onclick = function () {
+    window.scroll(0, 0);
+};
+
+
+
+//--------- TẠO RA LIST CÁC HỌC BỔNG-----------
+
 function render() {
+    // map là thuộc tính của mảng: từ mảng có sẳn lấy dữ liệu từ mảng đó
     const htmlList = dataList.map((data, index) => {
         return `
         <li class="item-story" data-index=${index}>
@@ -151,32 +158,40 @@ function render() {
     const htmls = htmlList.join("");
     listStory.innerHTML = htmls;
 }
-
 render();
+
+
+
+
+//------------------ HÀM ĐÓNG CÁC OVERPLAY VÀ FORM--------------
 
 function closeOverplay() {
     elements[0].classList.remove("show");
     elements[1].classList.remove("show");
     overplay.classList.remove("show");
-    console.log(1);
 }
 
+
+
+//------------ SỰ KIỆN ONCLICK VÀ MỞ OVERPLAY VÀ FORM --------------
 show.onclick = function () {
     overplay.classList.add("show");
     elements[1].classList.add("show");
     elements[0].classList.remove("show");
 };
 
+//--------------KIỂM TRA CÁC CÁI TEXTAREA ĐÃ ĐƯỢC NHẬP THÔNG TIN ?-----------------
+
 function check() {
     for (let i = 0; i < inputs.length; i++) {
         if (inputs[i].value == "") return false;
     }
-
     return true;
 }
 
+//-----SỰ KIỆN THÊM HOẠT ĐỘNG ----------------
+
 doneBtn.onclick = function () {
-    console.log(1);
     if (check()) {
         const obj = {
             title: inputs[0].value,
@@ -190,23 +205,26 @@ doneBtn.onclick = function () {
             timePost: "1 phút trước",
         };
         dataList.unshift(obj);
+        //xoá dữ liệu sau khi nhập 
+        for (let i = 0; i < inputs.length; i++) inputs[i].value = null;
         render();
         closeOverplay();
     } else alert("Bạn chưa nhập đủ thông tin");
 };
-// tạo mảng
-// onlick tạo {} unshift vào dataList
-// học AV
 
+
+//------ĐÓNG CÁC FORM VÀ OVER PLAY KHI NHẤN NÚT CLOSE------
 for (let i = 0; i < closeBtns.length; i++) {
     closeBtns[i].onclick = closeOverplay;
 }
 
-//onclick item story
+//---------SỰ KIỆN TRÊN LIST CÁC HOẠT ĐỘNG----------
 listStory.onclick = function (e) {
     const item = e.target.closest(".item-story");
     const likeBtn = e.target.closest(".item-story__like ");
 
+
+    //------SỰ KIỆN TRÊN NÚT TIM----------
     if (likeBtn) {
         const d = parseInt(likeBtn.dataset.index);
 
@@ -215,7 +233,7 @@ listStory.onclick = function (e) {
         } else {
             dataList[d].isLike = true;
         }
-    } else if (item) {
+    } else if (item) {         //-----SỰ KIỆN THAY ĐỔI CÁC THÔNG TIN TRÊN FORM---------
         const idx = parseInt(item.dataset.index);
 
         informations[0].innerHTML = dataList[idx].title;
@@ -233,6 +251,4 @@ listStory.onclick = function (e) {
     render();
 };
 
-goToTop.onclick = function () {
-    window.scroll(0, 0);
-};
+
